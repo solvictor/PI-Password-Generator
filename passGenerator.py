@@ -83,7 +83,7 @@ def passwords(infos: dict):
                  
     return passwordsList        
             
-#askInfos(infos)
+askInfos(infos)
 print("""
     ____  ____     ____                  ______         
    / __ \/  _/    / __ \____ ___________/ ____/__  ____ 
@@ -91,8 +91,6 @@ print("""
  / ____// /_____/ ____/ /_/ (__  |__  ) /_/ /  __/ / / /
 /_/   /___/    /_/    \__,_/____/____/\____/\___/_/ /_/ 
                                                         """)
-
-print(passwords({"Name": "Name", "Surname": "Surname", "Birthday": "19/01/2000"}))
 
 interval = time.time() - start_time  
 print(f'\nTotal time in seconds: {interval}')
@@ -102,4 +100,4 @@ path = os.path.join(os.path.join(os.environ['USERPROFILE']), 'Desktop') + "\\pas
 if not os.path.exists(path):
     os.makedirs(path)
 
-saveToTxt(passwords({"Name": "Name", "Surname": "Surname", "Birthday": "19/01/2000"}), path, filename)
+saveToTxt(passwords(infos), path, filename)
