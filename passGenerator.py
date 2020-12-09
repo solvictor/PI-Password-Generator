@@ -84,15 +84,22 @@ def passwords(infos: dict):
     return passwordsList        
             
 #askInfos(infos)
+print("""
+    ____  ____     ____                  ______         
+   / __ \/  _/    / __ \____ ___________/ ____/__  ____ 
+  / /_/ // /_____/ /_/ / __ `/ ___/ ___/ / __/ _ \/ __ \\
+ / ____// /_____/ ____/ /_/ (__  |__  ) /_/ /  __/ / / /
+/_/   /___/    /_/    \__,_/____/____/\____/\___/_/ /_/ 
+                                                        """)
+
 print(passwords({"Name": "Name", "Surname": "Surname", "Birthday": "19/01/2000"}))
 
 interval = time.time() - start_time  
 print(f'\nTotal time in seconds: {interval}')
 
 filename = input("Enter name of the output file :\n")
-if not os.path.exists(os.path.join(os.path.join(os.environ['USERPROFILE']), 'Desktop') + "\\passLists\\"):
-    os.makedirs('passLists')
-os.makedirs(os.path.join(os.path.join(os.environ['USERPROFILE']), 'Desktop') + "\\passLists\\")
-desktop = os.path.join(os.path.join(os.environ['USERPROFILE']), 'Desktop') + "\\passLists\\"
+path = os.path.join(os.path.join(os.environ['USERPROFILE']), 'Desktop') + "\\passLists\\"
+if not os.path.exists(path):
+    os.makedirs(path)
 
-saveToTxt(passwords({"Name": "Name", "Surname": "Surname", "Birthday": "19/01/2000"}), desktop, filename)
+saveToTxt(passwords({"Name": "Name", "Surname": "Surname", "Birthday": "19/01/2000"}), path, filename)
