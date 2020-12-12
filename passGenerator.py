@@ -31,7 +31,7 @@ def askInfos(liste: dict):
         liste[info] = givenInfo
 
 def allStrings(string: str):
-    """Generate a list of all possibilit of a given string
+    """Generate a list of upper and lower possibility of a given string
 
     Args:
         string (str): given string
@@ -64,7 +64,7 @@ def passwords(infos: dict):
         infos (dict): dictionnary containing the infos
 
     Returns:
-        (list): list containing the passwords
+        passwordsList (list): list containing the passwords
     """
     passwordsList = []
     for info in infos:
@@ -72,6 +72,13 @@ def passwords(infos: dict):
             for x in range(len(allStrings(infos[info]))):
                 passwordsList.append(allStrings(infos[info])[x])                    
         else:
+            # Name + Surname & Surname + Name
+            for noms in allStrings(infos["Name"]):
+                for prenom in allStrings(infos["Surname"]):
+                    nomprenom = noms + prenom
+                    prenomnom = prenom + noms
+                    passwordsList.append(prenomnom)
+                    passwordsList.append(nomprenom)
             # Name + birthday
             for noms in allStrings(infos["Name"]):
                 noms = noms + birthdaySeparator(infos[info])[2]
@@ -95,7 +102,7 @@ print("""
 interval = time.time() - start_time  
 print(f'\nTotal time in seconds: {interval}')
 
-filename = input("Enter name of the output file :\n")
+filename = input("Enter name of the output file:\n")
 path = os.path.join(os.path.join(os.environ['USERPROFILE']), 'Desktop') + "\\passLists\\"
 if not os.path.exists(path):
     os.makedirs(path)
